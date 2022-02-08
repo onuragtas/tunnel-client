@@ -46,8 +46,7 @@ jobs:
 
     - name: Build
       run: |
-        go mod init
-        go mod tidy
+        go get -u -v
         go build -v ./...
 
     - name: Test
