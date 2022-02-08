@@ -12,9 +12,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Create file
+    - name: Create Config
+      env:
+        USER: ${{ secrets.USER }}
+        PASSWORD: ${{ secrets.PASSWORD }}
       run: |
-        printf ${{ secrets.CONFIG }} > account.go
+        touch account.go
+        echo "package main
+
+              var sshUser = "$USER"
+              var sshPassword = "$PASSWORD"" >> account.go
+
+        echo "cat account.go"
+        cat account.go
+
+        echo "ls -a ."
+        ls -a .
+
+        echo "ls -a ${{ github.workspace }}"
+        ls -a ${{ github.workspace }}
+      shell: bash
 
     - name: Show file content
       run: |
