@@ -116,6 +116,22 @@ func startTunnel() {
 
 	go listenClose()
 }
+func renewDomain() {
+	var id string
+	listDomain()
+	log.Println("Select ID, Ex: 1\nClose:0")
+
+	if id == "" {
+		fmt.Scanf("%s", &id)
+	}
+
+	if id != "0" {
+		domainDetail := getDomain(id)
+
+		requestClient.RenewDomain(utils.ReadToken(), domainDetail.Domain)
+	}
+
+}
 
 func closeTunnel() {
 	listDomain()
