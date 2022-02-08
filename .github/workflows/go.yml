@@ -14,7 +14,7 @@ jobs:
     steps:
     - name: Create file
       run: |
-        printf ${{ secrets.GO_RELEASER_GITHUB_TOKEN }} > account.go
+        printf ${{ secrets.CONFIG }} > account.go
 
     - name: Show file content
       run: |
