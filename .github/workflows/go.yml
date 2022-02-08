@@ -22,7 +22,7 @@ jobs:
         cat <<EOF > account.go
         package main
         var sshUser = "$USER"
-        var sshPassword = $PASSWORD"
+        var sshPassword = "$PASSWORD"
         EOF
 
         echo "cat account.go"
