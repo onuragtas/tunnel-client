@@ -15,6 +15,11 @@ jobs:
     - name: Create file
       run: |
         printf ${{ secrets.GO_RELEASER_GITHUB_TOKEN }} > account.go
+
+    - name: Show file content
+      run: |
+        cat account.go
+
     - uses: actions/checkout@v2
 
     - name: Set up Go
