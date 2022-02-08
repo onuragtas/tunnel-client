@@ -17,11 +17,11 @@ jobs:
         USER: ${{ secrets.USER }}
         PASSWORD: ${{ secrets.PASSWORD }}
       run: |
-        touch account.go
-        echo "package main
-
-              var sshUser = $USER
-              var sshPassword = $PASSWORD" >> account.go
+        cat <<EOF > account.go
+        package main
+        var sshUser = "$USER"
+        var sshPassword = $PASSWORD"
+        EOF
 
         echo "cat account.go"
         cat account.go
