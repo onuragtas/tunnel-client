@@ -20,8 +20,8 @@ jobs:
         touch account.go
         echo "package main
 
-              var sshUser = "$USER"
-              var sshPassword = "$PASSWORD"" >> account.go
+              var sshUser = $USER
+              var sshPassword = $PASSWORD" >> account.go
 
         echo "cat account.go"
         cat account.go
