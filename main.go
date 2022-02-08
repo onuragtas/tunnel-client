@@ -20,7 +20,7 @@ func main() {
 
 func listUserProcesses() {
 
-	fmt.Println("\nProcess:\nList Domains: 1\nCreate New: 2\nStart Tunnel: 3\nDelete Domain:4\nClose Tunnel: 5\n\n")
+	fmt.Println("\nProcess:\nList Domains: 1\nCreate New: 2\nStart Tunnel: 3\nDelete Domain:4\nClose Tunnel: 5\nRenew Domain: 6\n\n")
 	if process == "" {
 		fmt.Print("Process Number:")
 		fmt.Scanf("%s", &process)
@@ -40,6 +40,9 @@ func listUserProcesses() {
 		break
 	case "5":
 		closeTunnel()
+		break
+	case "6":
+		renewDomain()
 		break
 	default:
 		listDomain()
