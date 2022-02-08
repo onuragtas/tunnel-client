@@ -86,6 +86,18 @@ func (t *Request) CreateNewDomain(token string) interface{} {
 	return res
 }
 
+func (t *Request) RenewDomain(token, domain string) interface{} {
+
+	body := make(map[string]interface{})
+	body["token"] = token
+	body["domain"] = domain
+	var res models.Response
+
+	response := t.post("/renew_domain", body)
+	json.NewDecoder(*response).Decode(&res)
+	return res
+}
+
 func (t *Request) DeleteDomain(token string, id []string) models.Response {
 	body := make(map[string]interface{})
 	body["token"] = token
