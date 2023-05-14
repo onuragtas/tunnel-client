@@ -16,7 +16,7 @@ var defaultLocalPort = "80"
 var defaultDestinationIp = "127.0.0.1"
 
 var requestClient = request2.Request{
-	BaseUrl: "http://tunnel.resoft.org/api/v1",
+	BaseUrl: "http://resoft.org:9020/api/v1",
 }
 
 var domainList = models.Domain{}
