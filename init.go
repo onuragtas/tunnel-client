@@ -3,13 +3,13 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/onuragtas/tunnel-client/models"
+	request2 "github.com/onuragtas/tunnel-client/request"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
-	"tunnel-client/models"
-	request2 "tunnel-client/request"
 )
 
 var defaultLocalPort = "80"

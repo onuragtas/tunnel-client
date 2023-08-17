@@ -1,4 +1,4 @@
-module tunnel-client
+module github.com/onuragtas/tunnel-client
 
 go 1.16
 
