@@ -6,7 +6,10 @@ import (
 )
 
 func main() {
+	StartTunnel()
+}
 
+func StartTunnel() {
 	for true {
 
 		if utils.ReadToken() == "" {
