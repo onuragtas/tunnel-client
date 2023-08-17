@@ -2,8 +2,12 @@ package main
 
 import (
 	"fmt"
+	"github.com/onuragtas/tunnel-client"
 	"github.com/onuragtas/tunnel-client/utils"
 )
+
+var client = tunnel.NewClient()
+var process string
 
 func main() {
 	StartTunnel()
@@ -30,25 +34,31 @@ func listUserProcesses() {
 	}
 	switch process {
 	case "1":
-		listDomain()
+		domains := client.ListDomain()
+		for key, item := range domains.Data.Domains {
+			fmt.Println(key+1, item.Domain)
+		}
 		break
-	case "2":
-		createDomain()
-		break
-	case "3":
-		startTunnel()
-		break
-	case "4":
-		deleteDomain()
-		break
-	case "5":
-		closeTunnel()
-		break
-	case "6":
-		renewDomain()
-		break
+	//case "2":
+	//	createDomain()
+	//	break
+	//case "3":
+	//	startTunnel()
+	//	break
+	//case "4":
+	//	deleteDomain()
+	//	break
+	//case "5":
+	//	closeTunnel()
+	//	break
+	//case "6":
+	//	renewDomain()
+	//	break
 	default:
-		listDomain()
+		domains := client.ListDomain()
+		for key, item := range domains.Data.Domains {
+			fmt.Println(key+1, item.Domain)
+		}
 		break
 	}
 
@@ -64,10 +74,10 @@ func checkUser() {
 	fmt.Scanf("%s", &process)
 	switch process {
 	case "1":
-		login()
+		//login()
 		break
 	case "2":
-		register()
+		//register()
 		break
 	}
 
