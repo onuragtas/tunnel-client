@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"tunnel-client/utils"
+	"github.com/onuragtas/tunnel-client/utils"
 )
 
 func register() {
