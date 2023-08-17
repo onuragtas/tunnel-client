@@ -2,7 +2,6 @@ package request
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/onuragtas/go-requests"
 	"github.com/onuragtas/tunnel-client/models"
 )
@@ -54,12 +53,7 @@ func (t *Request) ListDomains(token string) models.Domain {
 	return res
 }
 
-func (t *Request) CreateNewDomain(token string) interface{} {
-	var domain string
-
-	fmt.Println("SubDomain:")
-	fmt.Scanf("%s", &domain)
-
+func (t *Request) CreateNewDomain(domain, token string) interface{} {
 	body := make(map[string]interface{})
 	body["token"] = token
 	body["domain"] = domain
