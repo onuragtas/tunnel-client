@@ -1,4 +1,4 @@
-package main
+package tunnel
 
 import (
 	"fmt"
@@ -44,7 +44,12 @@ func listenClose() {
 }
 
 func createDomain() {
-	fmt.Println(requestClient.CreateNewDomain(utils.ReadToken()))
+	var domain string
+
+	fmt.Println("SubDomain:")
+	fmt.Scanf("%s", &domain)
+
+	fmt.Println(requestClient.CreateNewDomain(domain, utils.ReadToken()))
 }
 
 func startTunnel() {

@@ -1,4 +1,4 @@
-package main
+package tunnel
 
 var sshUser = "user"
 var sshPassword = "password"
