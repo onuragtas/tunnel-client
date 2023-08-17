@@ -51,10 +51,10 @@ func (c *Client) Register(username, password, email string) bool {
 
 func (c *Client) CheckUser() bool {
 	if utils.ReadToken() == "" {
-		return true
+		return false
 	}
 
-	return false
+	return true
 }
 
 func (c *Client) ListDomain() models.Domain {
