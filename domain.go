@@ -52,7 +52,7 @@ func createDomain() {
 	fmt.Println(requestClient.CreateNewDomain(domain, utils.ReadToken()))
 }
 
-func startTunnel() {
+func startTunnel(sshUser, sshPassword string) {
 	listDomain()
 	log.Println("Select IDs, Ex: 1:local_port:destination_ip,2:local_port:destination_ip...Or 1,2...\nClose:0")
 
