@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/onuragtas/go-requests"
-	"tunnel-client/models"
+	"github.com/onuragtas/tunnel-client/models"
 )
 
 type Request struct {

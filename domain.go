@@ -2,13 +2,13 @@ package main
 
 import (
 	"fmt"
+	"github.com/onuragtas/tunnel-client/models"
+	tunnel2 "github.com/onuragtas/tunnel-client/tunnel"
+	"github.com/onuragtas/tunnel-client/utils"
 	"log"
 	"strconv"
 	"strings"
 	"time"
-	"tunnel-client/models"
-	tunnel2 "tunnel-client/tunnel"
-	"tunnel-client/utils"
 )
 
 type Item struct {
