@@ -138,8 +138,16 @@ func (c *Client) DeleteDomain(idList []string) models.Response {
 	return requestClient.DeleteDomain(c.GetToken(), idList)
 }
 
-func (c *Client) CloseDomain() {
-
+func (c *Client) CloseDomain(closeList []int) {
+	if len(closeList) != 0 {
+		for _, item := range closeList {
+			tunnelDetail := getTunnelItem(item)
+			if tunnelDetail != nil {
+				tunnelDetail.CloseSignal <- 1
+				removeTunnelItem(item)
+			}
+		}
+	}
 }
 
 func (c *Client) RenewDomain(domain string) {

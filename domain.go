@@ -6,7 +6,6 @@ import (
 	tunnel2 "github.com/onuragtas/tunnel-client/tunnel"
 	"github.com/onuragtas/tunnel-client/utils"
 	"log"
-	"strconv"
 	"time"
 )
 
@@ -195,10 +194,9 @@ func getTunnelItem(id int) *Item {
 	return nil
 }
 
-func removeTunnelItem(id string) *Item {
+func removeTunnelItem(id int) *Item {
 	for key, _ := range startedTunnels.Data {
-		idCasting, _ := strconv.Atoi(id)
-		if key == idCasting-1 {
+		if key == id-1 {
 			startedTunnels.Data = remove(startedTunnels.Data, key)
 		}
 	}
