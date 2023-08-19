@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-var defaultLocalPort = "80"
+var defaultLocalPort = 80
 var defaultDestinationIp = "127.0.0.1"
 
 var requestClient = request2.Request{

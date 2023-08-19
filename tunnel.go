@@ -3,7 +3,9 @@ package tunnel
 import (
 	"fmt"
 	"github.com/onuragtas/tunnel-client/models"
+	tunnel2 "github.com/onuragtas/tunnel-client/tunnel"
 	"github.com/onuragtas/tunnel-client/utils"
+	"time"
 )
 
 type IClient interface {
@@ -70,8 +72,66 @@ func (c *Client) CreateDomain(domain string) interface{} {
 	return requestClient.CreateNewDomain(domain, utils.ReadToken())
 }
 
-func (c *Client) StartTunnel() {
+func (c *Client) StartTunnel(tunnelList []models.Tunnel, sshUser, sshPassword string) {
 
+	if len(tunnelList) != 0 {
+		for _, item := range tunnelList {
+			var tunnel tunnel2.Client
+
+			localPort := defaultLocalPort
+			localIp := defaultDestinationIp
+			if item.LocalPort != 0 {
+				localPort = item.LocalPort
+			}
+
+			if item.LocalIp != "" {
+				localIp = item.LocalIp
+			}
+
+			c := make(chan int)
+
+			tunnelDetail := getTunnelItem(item.IndexId)
+
+			if tunnelDetail != nil {
+				continue
+			}
+
+			domainDetail := getDomain(item.DomainId)
+
+			// local service to be forwarded
+			destinationLocalPort := localPort
+			var localEndpoint = tunnel2.Endpoint{
+				Host: localIp,
+				Port: destinationLocalPort,
+			}
+
+			// remote SSH server
+			var serverEndpoint = tunnel2.Endpoint{
+				Host: domainDetail.Domain,
+				Port: 22,
+			}
+
+			// remote forwarding port (on remote SSH server network)
+			var remoteEndpoint = tunnel2.Endpoint{
+				Host: domainDetail.Domain,
+				Port: domainDetail.Port,
+			}
+
+			tunnel.LocalEndpoint = localEndpoint
+			tunnel.RemoteEndpoint = remoteEndpoint
+			tunnel.ServerEndpoint = serverEndpoint
+			tunnel.Signal = c
+			tunnel.CloseHandleSignal = closeHandleSignal
+			tunnel.SshUser = sshUser
+			tunnel.SshPassword = sshPassword
+
+			startedTunnels.Data = append(startedTunnels.Data, Item{Signal: closeHandleSignal, CloseSignal: c, Domain: domainDetail, KeepAliveTime: time.Now(), Tunnel: tunnel})
+
+			go tunnel.Connect()
+		}
+	}
+
+	go listenClose()
 }
 
 func (c *Client) DeleteDomain(idList []string) models.Response {
