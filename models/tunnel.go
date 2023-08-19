@@ -6,4 +6,5 @@ type Tunnel struct {
 	DestinationIp string
 	DomainId      int
 	LocalIp       string
+	Domain        string
 }

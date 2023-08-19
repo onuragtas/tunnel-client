@@ -90,7 +90,7 @@ func (c *Client) StartTunnel(tunnelList []models.Tunnel, sshUser, sshPassword st
 
 			c := make(chan int)
 
-			tunnelDetail := getTunnelItem(item.IndexId)
+			tunnelDetail := getTunnelItem(item.Domain)
 
 			if tunnelDetail != nil {
 				continue
@@ -138,7 +138,7 @@ func (c *Client) DeleteDomain(idList []string) models.Response {
 	return requestClient.DeleteDomain(c.GetToken(), idList)
 }
 
-func (c *Client) CloseTunnel(closeList []int) {
+func (c *Client) CloseTunnel(closeList []string) {
 	if len(closeList) != 0 {
 		for _, item := range closeList {
 			tunnelDetail := getTunnelItem(item)
