@@ -138,7 +138,7 @@ func (c *Client) DeleteDomain(idList []string) models.Response {
 	return requestClient.DeleteDomain(c.GetToken(), idList)
 }
 
-func (c *Client) CloseDomain(closeList []int) {
+func (c *Client) CloseTunnel(closeList []int) {
 	if len(closeList) != 0 {
 		for _, item := range closeList {
 			tunnelDetail := getTunnelItem(item)
