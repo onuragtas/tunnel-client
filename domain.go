@@ -185,18 +185,18 @@ func getDomain(id int) models.DomainItem {
 	return models.DomainItem{}
 }
 
-func getTunnelItem(id int) *Item {
-	for key, item := range startedTunnels.Data {
-		if key == id-1 {
+func getTunnelItem(id string) *Item {
+	for _, item := range startedTunnels.Data {
+		if item.Domain.Domain == id {
 			return &item
 		}
 	}
 	return nil
 }
 
-func removeTunnelItem(id int) *Item {
-	for key, _ := range startedTunnels.Data {
-		if key == id-1 {
+func removeTunnelItem(id string) *Item {
+	for key, item := range startedTunnels.Data {
+		if item.Domain.Domain == id {
 			startedTunnels.Data = remove(startedTunnels.Data, key)
 		}
 	}
