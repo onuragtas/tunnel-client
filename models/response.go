@@ -2,5 +2,5 @@ package models
 
 type Response struct {
 	Success bool
-	Data Data
+	Data    map[string]interface{}
 }
