@@ -51,8 +51,8 @@ func updateULimit() {
 
 func init() {
 	updateULimit()
-	flag.StringVar(&process, "process", "", "")
-	flag.StringVar(&list, "list", "", "")
+	//flag.StringVar(&process, "process", "", "")
+	//flag.StringVar(&list, "list", "", "")
 
 	flag.Parse()
 	SetupCloseHandler()
