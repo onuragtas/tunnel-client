@@ -1,7 +1,6 @@
 package tunnel
 
 import (
-	"flag"
 	"fmt"
 	"github.com/onuragtas/tunnel-client/models"
 	request2 "github.com/onuragtas/tunnel-client/request"
@@ -54,7 +53,7 @@ func init() {
 	//flag.StringVar(&process, "process", "", "")
 	//flag.StringVar(&list, "list", "", "")
 
-	flag.Parse()
+	//flag.Parse()
 	SetupCloseHandler()
 	go keepAlive()
 }
