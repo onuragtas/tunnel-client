@@ -68,6 +68,10 @@ func (c *Client) ListDomain() models.Domain {
 	return domainList
 }
 
+func (c *Client) UserInfo() models.UserInfo {
+	return requestClient.UserInfo(utils.ReadToken())
+}
+
 func (c *Client) CreateDomain(domain string) interface{} {
 	return requestClient.CreateNewDomain(domain, utils.ReadToken())
 }
