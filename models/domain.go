@@ -9,6 +9,22 @@ type Domain struct {
 	Success bool `json:"success"`
 }
 
+type UserInfo struct {
+	Data struct {
+		User struct {
+			ID        int         `json:"ID"`
+			CreatedAt time.Time   `json:"CreatedAt"`
+			UpdatedAt time.Time   `json:"UpdatedAt"`
+			DeletedAt interface{} `json:"DeletedAt"`
+			Id        int         `json:"id"`
+			Username  string      `json:"username"`
+			Email     string      `json:"email"`
+			Password  string      `json:"password"`
+		} `json:"user"`
+	} `json:"data"`
+	Success bool `json:"success"`
+}
+
 type DomainItem struct {
 	CreatedAt time.Time   `json:"CreatedAt"`
 	UpdatedAt time.Time   `json:"UpdatedAt"`
