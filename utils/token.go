@@ -1,6 +1,9 @@
 package utils
 
-import "os"
+import (
+	"os"
+	"strings"
+)
 
 func WriteToken(token string) {
 	path, _ := os.UserHomeDir()
@@ -12,5 +15,5 @@ func ReadToken() string {
 	path, _ := os.UserHomeDir()
 
 	token, _ := os.ReadFile(path + "/.token")
-	return string(token)
+	return strings.TrimSpace(string(token))
 }
