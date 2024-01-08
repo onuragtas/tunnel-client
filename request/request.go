@@ -53,6 +53,19 @@ func (t *Request) ListDomains(token string) models.Domain {
 	return res
 }
 
+func (t *Request) UserInfo(token string) models.UserInfo {
+	body := make(map[string]interface{})
+	body["token"] = token
+	var res models.UserInfo
+
+	response := t.post("/user_info", body)
+	if response == nil {
+		return models.UserInfo{}
+	}
+	json.Unmarshal(response, &res)
+	return res
+}
+
 func (t *Request) CreateNewDomain(domain, token string) interface{} {
 	body := make(map[string]interface{})
 	body["token"] = token
