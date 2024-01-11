@@ -20,6 +20,7 @@ type UserInfo struct {
 			Username  string      `json:"username"`
 			Email     string      `json:"email"`
 			Password  string      `json:"password"`
+			Subscribe int         `json:"subscribe"`
 		} `json:"user"`
 	} `json:"data"`
 	Success bool `json:"success"`
