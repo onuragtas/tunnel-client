@@ -61,7 +61,8 @@ func (c *Client) CheckUser() bool {
 
 func (c *Client) ListDomain() models.Domain {
 	response := requestClient.ListDomains(utils.ReadToken())
-	return response
+	domainList = response
+	return domainList
 }
 
 func (c *Client) UserInfo() models.UserInfo {
