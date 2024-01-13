@@ -1,11 +1,11 @@
 package tunnel
 
 import (
-	"fmt"
+	"time"
+
 	"github.com/onuragtas/tunnel-client/models"
 	tunnel2 "github.com/onuragtas/tunnel-client/tunnel"
 	"github.com/onuragtas/tunnel-client/utils"
-	"time"
 )
 
 type IClient interface {
@@ -61,11 +61,7 @@ func (c *Client) CheckUser() bool {
 
 func (c *Client) ListDomain() models.Domain {
 	response := requestClient.ListDomains(utils.ReadToken())
-	for key, item := range response.Data.Domains {
-		fmt.Println(key+1, item.Domain)
-	}
-	domainList = response
-	return domainList
+	return response
 }
 
 func (c *Client) UserInfo() models.UserInfo {
