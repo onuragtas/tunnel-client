@@ -35,7 +35,9 @@ func listenClose() {
 		case domain := <-closeHandleSignal:
 			for _, value := range startedTunnels.Data {
 				if value.Domain.Domain == domain {
-					go value.Tunnel.Connect()
+					removeTunnelItem(domain)
+					// if reconnect is needed
+					// go value.Tunnel.Connect()
 				}
 			}
 		}
