@@ -154,3 +154,7 @@ func (c *Client) CloseTunnel(closeList []string) {
 func (c *Client) RenewDomain(domain string) {
 	requestClient.RenewDomain(utils.ReadToken(), domain)
 }
+
+func (c *Client) GetStartedTunnels() StartedTunnels {
+	return startedTunnels
+}
