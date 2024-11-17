@@ -2,11 +2,12 @@ package tunnel
 
 import (
 	"fmt"
+	"log"
+	"time"
+
 	"github.com/onuragtas/tunnel-client/models"
 	tunnel2 "github.com/onuragtas/tunnel-client/tunnel"
 	"github.com/onuragtas/tunnel-client/utils"
-	"log"
-	"time"
 )
 
 type Item struct {
@@ -177,8 +178,8 @@ func deleteDomain() {
 }
 
 func getDomain(id int) models.DomainItem {
-	for key, item := range domainList.Data.Domains {
-		if key == id-1 {
+	for _, item := range domainList.Data.Domains {
+		if item.ID == id {
 			return item
 		}
 	}
