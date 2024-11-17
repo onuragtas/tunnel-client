@@ -56,7 +56,7 @@ func (t *Client) Connect() {
 	// Connect to SSH remote server using serverEndpoint
 	serverConn, err := ssh.Dial("tcp", t.ServerEndpoint.String(), sshConfig)
 	if err != nil {
-		log.Fatalln(fmt.Printf("Dial INTO remote server error: %s - %s ", err, t.ServerEndpoint.String()))
+		log.Println(fmt.Printf("Dial INTO remote server error: %s - %s ", err, t.ServerEndpoint.String()))
 	}
 
 	// Listen on remote server port
@@ -64,7 +64,7 @@ func (t *Client) Connect() {
 	if err != nil {
 		time.Sleep(time.Second * 2)
 		t.CloseHandleSignal <- t.RemoteEndpoint.Host
-		log.Fatalln(fmt.Printf("Listen open port ON remote server error: %s - %s ", err, t.RemoteEndpoint.String()))
+		log.Println(fmt.Printf("Listen open port ON remote server error: %s - %s ", err, t.RemoteEndpoint.String()))
 		return
 	}
 	defer func(listener net.Listener) {
