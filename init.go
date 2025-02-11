@@ -2,20 +2,21 @@ package tunnel
 
 import (
 	"fmt"
-	"github.com/onuragtas/tunnel-client/models"
-	request2 "github.com/onuragtas/tunnel-client/request"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+
+	"github.com/onuragtas/tunnel-client/models"
+	request2 "github.com/onuragtas/tunnel-client/request"
 )
 
 var defaultLocalPort = 80
 var defaultDestinationIp = "127.0.0.1"
 
 var requestClient = request2.Request{
-	BaseUrl: "https://tunnel.retp.xyz/api/v1",
+	BaseUrl: "https://tunnel.tnpx.org/api/v1",
 }
 
 var domainList = models.Domain{}
