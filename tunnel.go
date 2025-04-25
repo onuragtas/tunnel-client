@@ -50,10 +50,10 @@ func (c *Client) Logout() bool {
 	return true
 }
 
-func (c *Client) Register(username, password, email string) bool {
+func (c *Client) Register(username, password, email string) models.Register {
 	response := requestClient.Register(username, password, email)
 	utils.WriteToken(response.Data.Token)
-	return true
+	return response
 }
 
 func (c *Client) CheckUser() bool {
