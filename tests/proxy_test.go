@@ -30,3 +30,8 @@ func TestAddDomain(t *testing.T) {
 	client.ListDomain()
 	client.CreateDomain("test")
 }
+
+func TestLogin(t *testing.T) {
+	response := client.Login("user", "pass")
+	t.Error(!response.Success)
+}
