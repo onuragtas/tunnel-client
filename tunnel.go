@@ -45,6 +45,11 @@ func (c *Client) Login(username, password string) bool {
 	return true
 }
 
+func (c *Client) Logout() bool {
+	utils.WriteToken("")
+	return true
+}
+
 func (c *Client) Register(username, password, email string) bool {
 	response := requestClient.Register(username, password, email)
 	utils.WriteToken(response.Data.Token)
