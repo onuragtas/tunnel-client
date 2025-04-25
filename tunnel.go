@@ -39,10 +39,10 @@ func (c Client) initialize() {
 	}
 }
 
-func (c *Client) Login(username, password string) bool {
+func (c *Client) Login(username, password string) models.Login {
 	response := requestClient.Login(username, password)
 	utils.WriteToken(response.Data.Token)
-	return true
+	return response
 }
 
 func (c *Client) Logout() bool {
