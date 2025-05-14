@@ -16,7 +16,7 @@ var defaultLocalPort = 80
 var defaultDestinationIp = "127.0.0.1"
 
 var requestClient = request2.Request{
-	BaseUrl: "https://tunnel.tnpx.org/api/v1",
+	BaseUrl: "https://api.tnpx.org/api/v1",
 }
 
 var domainList = models.Domain{}
