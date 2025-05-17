@@ -2,9 +2,10 @@ package models
 
 type Register struct {
 	Success bool
-	Data Data
+	Data    Data
 }
 
 type Data struct {
-	Token string
+	Token   string `json:"token"`
+	Message string `json:"message"`
 }
