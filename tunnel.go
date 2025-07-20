@@ -119,7 +119,7 @@ func (c *Client) StartTunnel(tunnelList []models.Tunnel, sshUser, sshPassword st
 
 			// remote forwarding port (on remote SSH server network)
 			var remoteEndpoint = tunnel2.Endpoint{
-				Host: domainDetail.Domain,
+				Host: "127.0.0.1",
 				Port: domainDetail.Port,
 			}
 
