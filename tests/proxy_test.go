@@ -15,11 +15,11 @@ func TestProxy(t *testing.T) {
 	var tunnels []models.Tunnel
 
 	tunnels = append(tunnels, models.Tunnel{
-		LocalPort:     5000,
-		DestinationIp: "ip",
-		DomainId:      22,
-		LocalIp:       "ip",
-		Domain:        "testdomain",
+		LocalPort:     3333,
+		DestinationIp: "127.0.0.1",
+		DomainId:      409,
+		LocalIp:       "127.0.0.1",
+		Domain:        "test.tnpx.org",
 	})
 
 	client.StartTunnel(tunnels, "user", "pass")
