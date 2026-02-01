@@ -5,7 +5,6 @@ import (
 
 	"github.com/onuragtas/tunnel-client/models"
 	tunnel2 "github.com/onuragtas/tunnel-client/tunnel"
-	"github.com/onuragtas/tunnel-client/utils"
 )
 
 type IClient interface {
@@ -29,12 +28,12 @@ func NewClient() *Client {
 	return &Client{}
 }
 
-// getToken: parametre olarak token gelirse onu döner, nil/boş gelirse diskten okur.
+// getToken: token yalnızca parametreden alınır; nil/boş ise boş string döner (diske yazılmaz/okunmaz).
 func getToken(token *string) string {
 	if token != nil && *token != "" {
 		return *token
 	}
-	return utils.ReadToken()
+	return ""
 }
 
 func (c Client) GetToken(token *string) string {
@@ -43,18 +42,15 @@ func (c Client) GetToken(token *string) string {
 
 func (c *Client) Login(username, password string) models.Login {
 	response := requestClient.Login(username, password)
-	utils.WriteToken(response.Data.Token)
 	return response
 }
 
 func (c *Client) Logout() bool {
-	utils.WriteToken("")
 	return true
 }
 
 func (c *Client) Register(username, password, email string) models.Register {
 	response := requestClient.Register(username, password, email)
-	utils.WriteToken(response.Data.Token)
 	return response
 }
 
