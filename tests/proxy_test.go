@@ -10,7 +10,7 @@ import (
 var client = tunnel.NewClient()
 
 func TestProxy(t *testing.T) {
-	client.ListDomain()
+	client.ListDomain(nil)
 	var c chan bool
 	var tunnels []models.Tunnel
 
@@ -27,8 +27,8 @@ func TestProxy(t *testing.T) {
 }
 
 func TestAddDomain(t *testing.T) {
-	client.ListDomain()
-	client.CreateDomain("test")
+	client.ListDomain(nil)
+	client.CreateDomain("test", nil)
 }
 
 func TestLogin(t *testing.T) {

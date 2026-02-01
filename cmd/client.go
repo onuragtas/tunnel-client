@@ -34,7 +34,7 @@ func listUserProcesses() {
 	}
 	switch process {
 	case "1":
-		domains := client.ListDomain()
+		domains := client.ListDomain(nil)
 		for key, item := range domains.Data.Domains {
 			fmt.Println(key+1, item.Domain)
 		}
@@ -55,7 +55,7 @@ func listUserProcesses() {
 	//	renewDomain()
 	//	break
 	default:
-		domains := client.ListDomain()
+		domains := client.ListDomain(nil)
 		for key, item := range domains.Data.Domains {
 			fmt.Println(key+1, item.Domain)
 		}
