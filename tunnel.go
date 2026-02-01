@@ -11,14 +11,14 @@ import (
 type IClient interface {
 	Login() error
 	Register() error
-	CheckUser() bool
-	GetToken() string
-	ListDomain() models.Domain
-	CreateDomain()
+	CheckUser(...*string) bool
+	GetToken(*string) string
+	ListDomain(*string) models.Domain
+	CreateDomain(string, *string) interface{}
 	StartTunnel()
 	CloseTunnel()
-	DeleteDomain()
-	RenewDomain()
+	DeleteDomain([]string, *string) models.Response
+	RenewDomain(string, *string)
 }
 
 type Client struct {
@@ -29,14 +29,16 @@ func NewClient() *Client {
 	return &Client{}
 }
 
-func (c Client) GetToken() string {
+// getToken: parametre olarak token gelirse onu döner, nil/boş gelirse diskten okur.
+func getToken(token *string) string {
+	if token != nil && *token != "" {
+		return *token
+	}
 	return utils.ReadToken()
 }
 
-func (c Client) initialize() {
-	if utils.ReadToken() == "" {
-		c.CheckUser()
-	}
+func (c Client) GetToken(token *string) string {
+	return getToken(token)
 }
 
 func (c *Client) Login(username, password string) models.Login {
@@ -56,26 +58,26 @@ func (c *Client) Register(username, password, email string) models.Register {
 	return response
 }
 
-func (c *Client) CheckUser() bool {
-	if utils.ReadToken() == "" {
+func (c *Client) CheckUser(token *string) bool {
+	if getToken(token) == "" {
 		return false
 	}
 
 	return true
 }
 
-func (c *Client) ListDomain() models.Domain {
-	response := requestClient.ListDomains(utils.ReadToken())
+func (c *Client) ListDomain(token *string) models.Domain {
+	response := requestClient.ListDomains(getToken(token))
 	domainList = response
 	return domainList
 }
 
-func (c *Client) UserInfo() models.UserInfo {
-	return requestClient.UserInfo(utils.ReadToken())
+func (c *Client) UserInfo(token *string) models.UserInfo {
+	return requestClient.UserInfo(getToken(token))
 }
 
-func (c *Client) CreateDomain(domain string) interface{} {
-	return requestClient.CreateNewDomain(domain, utils.ReadToken())
+func (c *Client) CreateDomain(domain string, token *string) interface{} {
+	return requestClient.CreateNewDomain(domain, getToken(token))
 }
 
 func (c *Client) StartTunnel(tunnelList []models.Tunnel, sshUser, sshPassword string) {
@@ -140,8 +142,8 @@ func (c *Client) StartTunnel(tunnelList []models.Tunnel, sshUser, sshPassword st
 	go listenClose()
 }
 
-func (c *Client) DeleteDomain(idList []string) models.Response {
-	return requestClient.DeleteDomain(c.GetToken(), idList)
+func (c *Client) DeleteDomain(idList []string, token *string) models.Response {
+	return requestClient.DeleteDomain(getToken(token), idList)
 }
 
 func (c *Client) CloseTunnel(closeList []string) {
@@ -156,8 +158,8 @@ func (c *Client) CloseTunnel(closeList []string) {
 	}
 }
 
-func (c *Client) RenewDomain(domain string) {
-	requestClient.RenewDomain(utils.ReadToken(), domain)
+func (c *Client) RenewDomain(domain string, token *string) {
+	requestClient.RenewDomain(getToken(token), domain)
 }
 
 func (c *Client) GetStartedTunnels() StartedTunnels {
