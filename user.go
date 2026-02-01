@@ -2,7 +2,6 @@ package tunnel
 
 import (
 	"fmt"
-	"github.com/onuragtas/tunnel-client/utils"
 )
 
 func register() {
@@ -18,7 +17,7 @@ func register() {
 	fmt.Scanf("%s", &password)
 
 	response := requestClient.Register(username, password, email)
-	utils.WriteToken(response.Data.Token)
+	_ = response
 }
 
 func login() {
@@ -31,5 +30,5 @@ func login() {
 	fmt.Scanf("%s", &password)
 
 	response := requestClient.Login(username, password)
-	utils.WriteToken(response.Data.Token)
+	_ = response
 }
